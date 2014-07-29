@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">LPROGroceries</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="take_picture">Take a picture</string>
+    <string name="select_picture">Select a picture</string>
+    <string name="edit_list">Edit your list</string>
+    <string name="products_found">Products found</string>
+	<string name="products_to_be_bought">Products to be bought</string>
+	<string name="ok">OK</string>
+	<string name="cancel">Cancel</string>
+	<string name="developed_by">Developed by Jaime Alonso, David Riobó and Ángel Sotomayor</string>
+	<string name="history">History</string>
+	<string name="about">About</string>
+	<string name="share">Share</string>
+	
+</resources>
