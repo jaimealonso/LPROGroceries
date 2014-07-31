@@ -39,7 +39,7 @@ public final class R {
         public static final int button3=0x7f090005;
         public static final int delete_btn=0x7f09000f;
         public static final int history=0x7f090010;
-        public static final int history_item_string=0x7f09000e;
+        public static final int history_item_string=0x7f09000c;
         public static final int imageButton1=0x7f090001;
         public static final int imageView1=0x7f090006;
         public static final int linearLayout1=0x7f090007;
@@ -47,7 +47,7 @@ public final class R {
         public static final int listView2=0x7f090009;
         public static final int listView3=0x7f090002;
         public static final int listView4=0x7f090000;
-        public static final int list_item_string=0x7f09000c;
+        public static final int list_item_string=0x7f09000e;
         public static final int share=0x7f090012;
         public static final int textView1=0x7f09000a;
         public static final int textView2=0x7f09000b;

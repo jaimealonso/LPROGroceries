@@ -54,9 +54,9 @@ public class HistoryAdapter extends BaseAdapter implements ListAdapter {
 		listItemText.setText(list.get(position)); 
 
 		//Handle buttons and add onClickListeners
-		ImageButton arrow_btn = (ImageButton) view.findViewById(R.id.arrow_btn);
 
-    arrow_btn.setOnClickListener(new View.OnClickListener(){
+	    ImageButton arrow_btn = (ImageButton) view.findViewById(R.id.arrow_btn);
+		arrow_btn.setOnClickListener(new View.OnClickListener(){
         @Override
         public void onClick(View v) { 
             //do something

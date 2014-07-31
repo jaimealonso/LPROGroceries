@@ -61,7 +61,7 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Intent list_intent = new Intent("com.example.ListActivity");
+				Intent list_intent = new Intent("com.example.ProductListActivity");
 				startActivity(list_intent);
 			}
 		});
@@ -123,14 +123,17 @@ public class MainActivity extends Activity {
         	case R.id.about:
         		AboutDialog about = new AboutDialog();
         		about.show(getFragmentManager(), null);
-        		return true;
+        		break;
         	case R.id.history:
-        		//startActivity(new Intent(MainActivity.this, HistoryActivity.class));
-        		return true;
+        		startActivity(new Intent(this, HistoryActivity.class));
+        		break;
         //if (id == R.id.about || id == R.id.history) {
             //return true;
+        	default:
+                return super.onOptionsItemSelected(item);
         }
         
-        return super.onOptionsItemSelected(item);
+        return true;
+        
     }
 }

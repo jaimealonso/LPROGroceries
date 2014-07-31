@@ -3,6 +3,7 @@ package com.example.lprogroceries.db.helper;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
@@ -98,6 +99,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	        db.execSQL(CREATE_TABLE_LIST_OBJECT);
 	        db.execSQL(CREATE_TABLE_CAPTURE);
 
+
+	        
+	        
 	    }
 	 
 	 @Override

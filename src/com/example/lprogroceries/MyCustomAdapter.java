@@ -1,6 +1,7 @@
 package com.example.lprogroceries;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,14 +11,16 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+import com.example.lprogroceries.db.model.Object;
+
 
 public class MyCustomAdapter extends BaseAdapter implements ListAdapter { 
-	private ArrayList<String> list = new ArrayList<String>(); 
+	private List<Object> list; 
 	private Context context; 
 
 
 
-	public MyCustomAdapter(ArrayList<String> list, Context context) { 
+	public MyCustomAdapter(List<Object> list, Context context) { 
 		this.list = list; 
 		this.context = context; 
 	} 
@@ -49,7 +52,7 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
 
 		//Handle TextView and display string from your list
 		TextView listItemText = (TextView)view.findViewById(R.id.list_item_string); 
-		listItemText.setText(list.get(position)); 
+		listItemText.setText(list.get(position).getName()); 
 
 		//Handle buttons and add onClickListeners
 		/*Button deleteBtn = (Button)view.findViewById(R.id.delete_btn);

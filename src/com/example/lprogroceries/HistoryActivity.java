@@ -21,9 +21,6 @@ public class HistoryActivity extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState); 
 	    setContentView(R.layout.activity_history); 
-	    
-        ActionBar actionBar = getActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
 
 	    //generate list
 	    ArrayList<String> list = new ArrayList<String>();
@@ -31,11 +28,9 @@ public class HistoryActivity extends Activity{
 	    list.add("08-07-2014");
 	    list.add("15-07-2014");
 
-	    //String [] values = {"01-07-2014", "08-07-2014", "15-07-2014"};
 	    //instantiate custom adapter
 	    HistoryAdapter adapter = new HistoryAdapter(list, this);
 
-	    //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, values);
 	    //handle listview and assign adapter
 	    ListView lView = (ListView)findViewById(R.id.listView4);
 	    lView.setAdapter(adapter);
