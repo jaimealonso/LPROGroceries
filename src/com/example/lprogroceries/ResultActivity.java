@@ -28,13 +28,16 @@ public class ResultActivity extends Activity{
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         
-        //Intent intent = getIntent();
+        Intent intent = getIntent();
         
-        //String photoUri = intent.getStringExtra("PHOTO_URI");
+        String photoUri = intent.getStringExtra("PHOTO_URI");
+        
+        Bitmap scaledBitmap = scaleDown(BitmapFactory.decodeFile(photoUri), 500.0f, true);
+        
+        ImageView result = (ImageView) findViewById(R.id.imageView1);
         
         
-        //ImageView result = (ImageView) findViewById(R.id.imageView1);
-        //result.setImageBitmap(BitmapFactory.decodeFile(photoUri));
+        result.setImageBitmap(scaledBitmap);
         
         /*File imgFile = new  File(photoUri);
         if(imgFile.exists()){
@@ -87,5 +90,17 @@ public class ResultActivity extends Activity{
         }
         
         return super.onOptionsItemSelected(item);
+    }
+    
+    public static Bitmap scaleDown(Bitmap realImage, float maxImageSize, boolean filter) {
+        float ratio = Math.min(
+                (float) maxImageSize / realImage.getWidth(),
+                (float) maxImageSize / realImage.getHeight());
+        int width = Math.round((float) ratio * realImage.getWidth());
+        int height = Math.round((float) ratio * realImage.getHeight());
+
+        Bitmap newBitmap = Bitmap.createScaledBitmap(realImage, width,
+                height, filter);
+        return newBitmap;
     }
 }
