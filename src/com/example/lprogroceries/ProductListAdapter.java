@@ -9,18 +9,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 import com.example.lprogroceries.db.model.Object;
 
 
-public class MyCustomAdapter extends BaseAdapter implements ListAdapter { 
+public class ProductListAdapter extends BaseAdapter implements ListAdapter { 
 	private List<Object> list; 
 	private Context context; 
 
 
 
-	public MyCustomAdapter(List<Object> list, Context context) { 
+	public ProductListAdapter(List<Object> list, Context context) { 
 		this.list = list; 
 		this.context = context; 
 	} 
@@ -41,6 +42,11 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
 		//just return 0 if your list items do not have an Id variable.
 		return 0;
 	} 
+	
+	public void setMyList(List<Object> list){
+		this.list = list;
+		this.notifyDataSetChanged();
+	}
 
 	@Override
 	public View getView(final int position, View convertView, ViewGroup parent) {
@@ -55,24 +61,15 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
 		listItemText.setText(list.get(position).getName()); 
 
 		//Handle buttons and add onClickListeners
-		/*Button deleteBtn = (Button)view.findViewById(R.id.delete_btn);
-    Button addBtn = (Button)view.findViewById(R.id.add_btn);
+		ImageButton deleteBtn = (ImageButton)view.findViewById(R.id.delete_btn);
 
-    deleteBtn.setOnClickListener(new View.OnClickListener(){
-        @Override
-        public void onClick(View v) { 
-            //do something
-            list.remove(position); //or some other task
-            notifyDataSetChanged();
-        }
-    });
-    addBtn.setOnClickListener(new View.OnClickListener(){
-        @Override
-        public void onClick(View v) { 
-            //do something
-            notifyDataSetChanged();
-        }
-    });*/
+		deleteBtn.setOnClickListener(new View.OnClickListener(){
+	        @Override
+	        public void onClick(View v) { 
+	            PLAdapterListener activity = (PLAdapterListener) context;
+	            activity.onDelete(list.get(position).getName());
+	        }
+	    });
 
 		return view; 
 	}

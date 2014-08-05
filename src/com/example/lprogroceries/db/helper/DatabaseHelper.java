@@ -164,6 +164,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 	       return obj;
 	   }
+	   
+	   /**
+	    * get single object by name
+	    */
+	   public Object getObjectByName(String object_name) {
+	       SQLiteDatabase db = this.getReadableDatabase();
+
+	       String selectQuery = "SELECT  * FROM " + TABLE_OBJECT + " WHERE "
+	               + KEY_OBJECT_NAME + " = '" + object_name + "'";
+
+	       Log.e(LOG, selectQuery);
+
+	       Cursor c = db.rawQuery(selectQuery, null);
+
+	       if (c != null)
+	           c.moveToFirst();
+
+	       Object obj = new Object();
+	       obj.setId(c.getInt(c.getColumnIndex(KEY_ID)));
+	       obj.setName((c.getString(c.getColumnIndex(KEY_OBJECT_NAME))));
+
+	       return obj;
+	   }
 
 	   /**
 	    * getting all objects
@@ -202,7 +225,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	               + TABLE_LIST + " tlist, " + TABLE_LIST_OBJECT + " tlo WHERE tlist."
 	               + KEY_ID + " = '" + list_id + "'" + " AND tlist." + KEY_ID
 	               + " = " + "tlo." + KEY_LIST_ID + " AND tOBJ." + KEY_ID + " = "
-	               + "tt." + KEY_OBJECT_ID;
+	               + "tlo." + KEY_OBJECT_ID;
 
 	       Log.e(LOG, selectQuery);
 
@@ -388,6 +411,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	       SQLiteDatabase db = this.getWritableDatabase();
 	       db.delete(TABLE_OBJECT, KEY_ID + " = ?",
 	               new String[] { String.valueOf(id) });
+	   }
+	   
+	   /**
+	    * Delete object from list
+	    */
+	   public void deleteObjectFromList(long idObject, long idList){
+	       SQLiteDatabase db = this.getWritableDatabase();
+	       db.delete(TABLE_LIST_OBJECT, KEY_OBJECT_ID + "=? AND " + KEY_LIST_ID + "=?",
+	    		   new String[] {String.valueOf(idObject), String.valueOf(idList)});
 	   }
 
 	   // ------------------------ "captures" table methods ----------------//

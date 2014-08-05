@@ -44,18 +44,6 @@ public class Object {
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		result = prime * result
-				+ ((object_name == null) ? 0 : object_name.hashCode());
-		result = prime * result
-				+ ((object_ref == null) ? 0 : object_ref.hashCode());
-		return result;
-	}
-
-	@Override
 	public boolean equals(java.lang.Object obj) {
 		if (this == obj)
 			return true;
@@ -64,17 +52,10 @@ public class Object {
 		if (getClass() != obj.getClass())
 			return false;
 		Object other = (Object) obj;
-		if (id != other.id)
-			return false;
 		if (object_name == null) {
 			if (other.object_name != null)
 				return false;
 		} else if (!object_name.equals(other.object_name))
-			return false;
-		if (object_ref == null) {
-			if (other.object_ref != null)
-				return false;
-		} else if (!object_ref.equals(other.object_ref))
 			return false;
 		return true;
 	}

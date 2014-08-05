@@ -19,16 +19,18 @@ import com.example.lprogroceries.db.helper.*;
 import com.example.lprogroceries.db.model.MyList;
 import com.example.lprogroceries.db.model.Object;
 
-public class ProductListActivity extends Activity{
+public class ProductListActivity extends Activity implements AddItemDialogListener, PLAdapterListener{
 	
 	private int list_objectsId;
+	private DatabaseHelper db;
+	private ListView lView;
 	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState); 
 	    setContentView(R.layout.activity_list); 
 
-	    final DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+	    db = new DatabaseHelper(getApplicationContext());
 	    	    
 	    
 	    if(db.getAllObjects().isEmpty()){
@@ -51,24 +53,24 @@ public class ProductListActivity extends Activity{
 	        
 	    }
 	    
-	    /*if(db.getAllLists().isEmpty()){
+	    if(db.getAllLists().isEmpty()){
 	    	list_objectsId = 1;
 	    	MyList list_objects = new MyList(list_objectsId, "user", new LinkedList<Object>());
 	    	db.createList(list_objects);
 	    }
 	    else{
 	    	list_objectsId = 1;
-	    }*/
+	    }
 	    
 	    //generate list
-	    //List<Object> list = db.getAllObjectsByList(list_objectsId);
-	    List<Object> list = db.getAllObjects();
+	    List<Object> list = db.getAllObjectsByList(list_objectsId);
+	    //List<Object> list = db.getAllObjects();
 
 	    //instantiate custom adapter
-	    MyCustomAdapter adapter = new MyCustomAdapter(list, this);
+	    ProductListAdapter adapter = new ProductListAdapter(list, this);
 
 	    //handle listview and assign adapter
-	    ListView lView = (ListView)findViewById(R.id.listView3);
+	    lView = (ListView)findViewById(R.id.listView3);
 	    lView.setAdapter(adapter);
 	    
         ImageButton plus_button = (ImageButton) findViewById(R.id.imageButton1);
@@ -76,21 +78,21 @@ public class ProductListActivity extends Activity{
 			
 			@Override
 			public void onClick(View v) {
-				/*List<Object> totalList = db.getAllObjects();
+				List<Object> totalList = db.getAllObjects();
 				List<Object> userList = db.getAllObjectsByList(list_objectsId);
 				
 				
 				CharSequence[] items = buildRemainingList(totalList,userList);
 				
 				
-				AddItemDialog aidialog = AddItemDialog.newInstance(items);*/
+				AddItemDialog aidialog = AddItemDialog.newInstance(items);
 				
-				AddItemDialog aidialog = new AddItemDialog();
 				aidialog.show(getFragmentManager(), null);
+				
 			}
 		});
         
-        db.closeDB();
+        //db.closeDB();
 	}
 	
     @Override
@@ -134,5 +136,24 @@ public class ProductListActivity extends Activity{
     	
     	return remainingList.toArray(new CharSequence[remainingList.size()]);
     }
+
+	@Override
+	public void onReturn(CharSequence[] list) {
+		for(CharSequence c : list){
+			Object o = db.getObjectByName((String)c);
+			db.createListObject(o.getId(), list_objectsId);
+		}
+		
+		((ProductListAdapter) lView.getAdapter()).setMyList(db.getAllObjectsByList(list_objectsId));
+
+	}
+
+	@Override
+	public void onDelete(String objectName) {
+		long idObject = db.getObjectByName(objectName).getId();
+		db.deleteObjectFromList(idObject, list_objectsId);
+		
+		((ProductListAdapter) lView.getAdapter()).setMyList(db.getAllObjectsByList(list_objectsId));
+	}
 
 }
