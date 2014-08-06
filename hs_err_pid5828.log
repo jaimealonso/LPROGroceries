@@ -1,0 +1,126 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  Internal Error (javaClasses.cpp:124), pid=5828, tid=7704
+#  fatal error: Invalid layout of preloaded class
+#
+# JRE version:  (8.0_11-b12) (build )
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.11-b03 mixed mode windows-amd64 compressed oops)
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.sun.com/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00000000022ce000):  JavaThread "Unknown thread" [_thread_in_vm, id=7704, stack(0x0000000002010000,0x0000000002110000)]
+
+Stack: [0x0000000002010000,0x0000000002110000]
+[error occurred during error reporting (printing stack bounds), id 0xc0000005]
+
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x308eca]
+V  [jvm.dll+0x25e121]
+V  [jvm.dll+0x25ed33]
+V  [jvm.dll+0x27eb54]
+C  [KERNELBASE.dll+0xde1b6]
+C  [ntdll.dll+0xa8114]
+C  [ntdll.dll+0x8988f]
+C  [ntdll.dll+0x9a77d]
+C  [ntdll.dll+0x429fb]
+C  [ntdll.dll+0x9993e]
+V  [jvm.dll+0x1fdfe1]
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+=>0x00000000022ce000 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=7704, stack(0x0000000002010000,0x0000000002110000)]
+
+VM state:not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (10 events):
+Event: 0.007 loading class java/lang/CharSequence done
+Event: 0.007 loading class java/lang/String done
+Event: 0.007 loading class java/lang/Class
+Event: 0.007 loading class java/lang/reflect/AnnotatedElement
+Event: 0.007 loading class java/lang/reflect/AnnotatedElement done
+Event: 0.007 loading class java/lang/reflect/GenericDeclaration
+Event: 0.007 loading class java/lang/reflect/GenericDeclaration done
+Event: 0.007 loading class java/lang/reflect/Type
+Event: 0.007 loading class java/lang/reflect/Type done
+Event: 0.007 loading class java/lang/Class done
+
+
+Dynamic libraries:
+0x00007ff65a430000 - 0x00007ff65a464000 	C:\Program Files\Java\jre8\bin\javaw.exe
+0x00007ff956730000 - 0x00007ff9568d9000 	C:\Windows\SYSTEM32\ntdll.dll
+0x00007ff954ce0000 - 0x00007ff954e1a000 	C:\Windows\system32\KERNEL32.DLL
+0x00007ff953e60000 - 0x00007ff953f6f000 	C:\Windows\system32\KERNELBASE.dll
+0x00007ff9526c0000 - 0x00007ff95274b000 	C:\Windows\system32\apphelp.dll
+0x00007ff9545c0000 - 0x00007ff954665000 	C:\Windows\system32\ADVAPI32.dll
+0x00007ff954b60000 - 0x00007ff954cd1000 	C:\Windows\system32\USER32.dll
+0x00007ff951ca0000 - 0x00007ff951efa000 	C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.9600.16384_none_62475f7becb72503\COMCTL32.dll
+0x00007ff956230000 - 0x00007ff9562d7000 	C:\Windows\system32\msvcrt.dll
+0x00007ff956520000 - 0x00007ff956577000 	C:\Windows\SYSTEM32\sechost.dll
+0x00007ff954760000 - 0x00007ff954896000 	C:\Windows\system32\RPCRT4.dll
+0x00007ff9540c0000 - 0x00007ff954205000 	C:\Windows\system32\GDI32.dll
+0x00007ff954400000 - 0x00007ff954434000 	C:\Windows\system32\IMM32.DLL
+0x00007ff954950000 - 0x00007ff954a89000 	C:\Windows\system32\MSCTF.dll
+0x0000000057dc0000 - 0x0000000057e92000 	C:\Program Files\Java\jre8\bin\msvcr100.dll
+0x0000000057590000 - 0x0000000057dba000 	C:\Program Files\Java\jre8\bin\server\jvm.dll
+0x00007ff949c10000 - 0x00007ff949c19000 	C:\Windows\SYSTEM32\WSOCK32.dll
+0x00007ff94f190000 - 0x00007ff94f1af000 	C:\Windows\SYSTEM32\WINMM.dll
+0x00007ff954690000 - 0x00007ff954697000 	C:\Windows\system32\PSAPI.DLL
+0x00007ff9562e0000 - 0x00007ff956338000 	C:\Windows\system32\WS2_32.dll
+0x00007ff94f150000 - 0x00007ff94f17a000 	C:\Windows\SYSTEM32\WINMMBASE.dll
+0x00007ff954b50000 - 0x00007ff954b59000 	C:\Windows\system32\NSI.dll
+0x00007ff953f70000 - 0x00007ff953fba000 	C:\Windows\SYSTEM32\cfgmgr32.dll
+0x00007ff952940000 - 0x00007ff952966000 	C:\Windows\SYSTEM32\DEVOBJ.dll
+0x0000000057580000 - 0x000000005758f000 	C:\Program Files\Java\jre8\bin\verify.dll
+0x0000000057550000 - 0x0000000057578000 	C:\Program Files\Java\jre8\bin\java.dll
+0x0000000057530000 - 0x0000000057546000 	C:\Program Files\Java\jre8\bin\zip.dll
+0x00007ff93f020000 - 0x00007ff93f1a8000 	C:\Windows\SYSTEM32\dbghelp.dll
+
+VM Arguments:
+jvm_args: -Dfile.encoding=Cp1252 -Xbootclasspath:E:\adt-bundle-windows-x86_64-20140702\sdk\platforms\android-20\android.jar 
+java_command: com.example.lprogroceries.test.CutImage
+java_class_path (initial): C:\Users\supervitis\git\LPROGroceries\bin\classes;C:\Users\supervitis\git\LPROGroceries\libs\android-support-v4.jar;E:\Android\javacv-bin\artoolkitplus.jar;E:\Android\javacv-bin\artoolkitplus-android-arm.jar;E:\Android\javacv-bin\artoolkitplus-android-x86.jar;E:\Android\javacv-bin\artoolkitplus-linux-x86.jar;E:\Android\javacv-bin\artoolkitplus-linux-x86_64.jar;E:\Android\javacv-bin\artoolkitplus-macosx-x86_64.jar;E:\Android\javacv-bin\artoolkitplus-windows-x86.jar;E:\Android\javacv-bin\artoolkitplus-windows-x86_64.jar;E:\Android\javacv-bin\ffmpeg.jar;E:\Android\javacv-bin\ffmpeg-android-arm.jar;E:\Android\javacv-bin\ffmpeg-android-x86.jar;E:\Android\javacv-bin\ffmpeg-linux-x86.jar;E:\Android\javacv-bin\ffmpeg-linux-x86_64.jar;E:\Android\javacv-bin\ffmpeg-macosx-x86_64.jar;E:\Android\javacv-bin\ffmpeg-windows-x86.jar;E:\Android\javacv-bin\ffmpeg-windows-x86_64.jar;E:\Android\javacv-bin\flycapture.jar;E:\Android\javacv-bin\flycapture-linux-x86.jar;E:\Android\javacv-bin\flycapture-linux-x86_64.jar;E:\Android\javacv-bin\flycapture-windows-x86.jar;E:\Android\javacv-bin\flycapture-windows-x86_64.jar;E:\Android\javacv-bin\javacpp.jar;E:\Android\javacv-bin\javacv.jar;E:\Android\javacv-bin\libdc1394.jar;E:\Android\javacv-bin\libdc1394-linux-x86.jar;E:\Android\javacv-bin\libdc1394-linux-x86_64.jar;E:\Android\javacv-bin\libdc1394-macosx-x86_64.jar;E:\Android\javacv-bin\libfreenect.jar;E:\Android\javacv-bin\libfreenect-linux-x86.jar;E:\Android\javacv-bin\libfreenect-linux-x86_64.jar;E:\Android\javacv-bin\libfreenect-macosx-x86_64.jar;E:\Android\javacv-bin\libfreenect-windows-x86.jar;E:\Android\javacv-bin\libfreenect-windows-x86_64.jar;E:\Android\javacv-bin\opencv.jar;E:\Android\javacv-bin\opencv-android-arm.jar;E:\Android\javacv-bin\opencv-android-x86.jar;E:\Android\javacv-bin\opencv-linux-x86.jar;E:\Android\javacv-bin\opencv-linux-x86_64.jar;E:\Android\javacv-bin\opencv-macosx-x86_64.jar;E:\Android\javacv-bin\opencv-windows-x86.jar;E:\Android\javac
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+PATH=C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\
+USERNAME=supervitis
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 60 Stepping 3, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 8.1 , 64 bit Build 9600 
+
+CPU:total 4 (2 cores per cpu, 2 threads per core) family 6 model 60 stepping 3, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, erms, ht, tsc, tscinvbit
+
+Memory: 4k page, physical 8305452k(3043152k free), swap 10271532k(2375240k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (25.11-b03) for windows-amd64 JRE (1.8.0_11-b12), built on Jun 16 2014 20:57:32 by "java_re" with MS VC++ 10.0 (VS2010)
+
+time: Wed Aug 06 03:18:19 2014
+elapsed time: 0 seconds
+
