@@ -2,6 +2,8 @@ package com.example.lprogroceries;
 
 import java.util.ArrayList;
 
+import com.example.lprogroceries.db.model.Capture;
+
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -14,13 +16,13 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 
 public class HistoryAdapter extends BaseAdapter implements ListAdapter { 
-	private ArrayList<String> list = new ArrayList<String>(); 
+	private ArrayList<Capture> list = new ArrayList<Capture>(); 
 	private Context context; 
 
 
 
-	public HistoryAdapter(ArrayList<String> list, Context context) { 
-		this.list = list; 
+	public HistoryAdapter(ArrayList<Capture> list, Context context) { 
+		this.list = list;
 		this.context = context; 
 	} 
 
@@ -51,7 +53,7 @@ public class HistoryAdapter extends BaseAdapter implements ListAdapter {
 
 		//Handle TextView and display string from your list
 		TextView listItemText = (TextView)view.findViewById(R.id.history_item_string); 
-		listItemText.setText(list.get(position)); 
+		listItemText.setText(list.get(position).getCreated_at()); 
 
 		//Handle buttons and add onClickListeners
 
@@ -60,7 +62,13 @@ public class HistoryAdapter extends BaseAdapter implements ListAdapter {
         @Override
         public void onClick(View v) { 
             //do something
-            context.startActivity(new Intent("com.example.ResultActivity"));
+        	Intent result_intent = new Intent("com.example.ResultActivity");
+        	
+        	result_intent.putExtra("ID_HISTORY", list.get(position).getId());
+			result_intent.putExtra("Activity", "history");
+
+        	
+            context.startActivity(result_intent);
         }
     });
 		return view; 

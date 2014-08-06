@@ -60,6 +60,9 @@ public class Object {
 		return true;
 	}
 	
+	public String toString(){
+		return this.object_name;
+	}
 	
 	
 

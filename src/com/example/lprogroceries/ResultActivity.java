@@ -3,6 +3,15 @@ package com.example.lprogroceries;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
+import com.example.lprogroceries.db.helper.DatabaseHelper;
+import com.example.lprogroceries.db.model.Capture;
+import com.example.lprogroceries.db.model.MyList;
+import com.example.lprogroceries.db.model.Object;
+
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -13,13 +22,19 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 public class ResultActivity extends Activity{
 
+	private Capture currentCapture;
+	private DatabaseHelper db;
+	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,10 +43,55 @@ public class ResultActivity extends Activity{
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         
+        db = new DatabaseHelper(getApplicationContext());
+        
         Intent intent = getIntent();
         
-        String photoUri = intent.getStringExtra("PHOTO_URI");
+        String previousActivity = intent.getStringExtra("Activity");
         
+        String photoUri = null;
+        
+        List<Object> foundObjects = null, missingObjects = null;
+        
+        if("main".equals(previousActivity)){
+        
+	        photoUri = intent.getStringExtra("PHOTO_URI");
+	        
+	        ////////////////////DECODING PART//////////////////////
+	        ImageDecode image = new ImageDecode(db.getAllObjects());
+	        foundObjects = image.getFoundObjects();
+	        missingObjects = getMissingObjects(foundObjects);
+	        //////////////////////////////////////////////////////
+	        
+	        MyList listFound = new MyList("found", (LinkedList<Object>) foundObjects);
+	        MyList listMissing = new MyList("missing", (LinkedList<Object>) missingObjects);
+	        
+	        int idFoundList = (int) db.createList(listFound);
+	        int idMissingList = (int) db.createList(listMissing);
+	        
+	    	currentCapture = new Capture(idFoundList, idMissingList, photoUri, null);
+	    	db.createCapture(currentCapture);
+	    	
+	        
+        }
+        else if("history".equals(previousActivity)){
+        	
+        	int idHistory = intent.getIntExtra("ID_HISTORY", 0);
+        	Log.e("LPROGROCERIES", "Idhistory: "+idHistory);
+        	currentCapture = db.getCapture(idHistory);
+        	
+        	photoUri = currentCapture.getRef();
+        	
+        	Log.e("LPROGROCERIES", "IdFound: "+currentCapture.getIdFoundList()+" IdMissing: "+currentCapture.getIdMissingList());
+        	
+    	    foundObjects = db.getAllObjectsByList(currentCapture.getIdFoundList());
+    	    missingObjects = db.getAllObjectsByList(currentCapture.getIdMissingList());
+    	    
+    	    Log.e("LPROGROCERIES", "Sizef: "+foundObjects.size()+" Sizem: "+missingObjects.size());
+
+        	
+        }
+	    
         Bitmap scaledBitmap = scaleDown(BitmapFactory.decodeFile(photoUri), 500.0f, true);
         
         ImageView result = (ImageView) findViewById(R.id.imageView1);
@@ -39,6 +99,20 @@ public class ResultActivity extends Activity{
         
         result.setImageBitmap(scaledBitmap);
         
+        ListView found = (ListView) findViewById(R.id.listView1);
+        ListView missing = (ListView) findViewById(R.id.listView2);
+        
+        ArrayAdapter<Object> foundAdapter = new ArrayAdapter<Object>(this, 
+        		android.R.layout.simple_list_item_1,
+        		foundObjects);
+        
+        ArrayAdapter<Object> missingAdapter = new ArrayAdapter<Object>(this, 
+        		android.R.layout.simple_list_item_1,
+        		missingObjects);
+        
+        found.setAdapter(foundAdapter);
+        missing.setAdapter(missingAdapter);
+
         /*File imgFile = new  File(photoUri);
         if(imgFile.exists()){
 
@@ -103,4 +177,22 @@ public class ResultActivity extends Activity{
                 height, filter);
         return newBitmap;
     }
+    
+    private LinkedList<Object> getMissingObjects(List<Object> listFoundObjects){
+    	LinkedList<Object> list = new LinkedList<Object>();
+    	
+    	List<Object> userList = db.getAllObjectsByList(1);
+    	
+    	for(Object o : userList){
+    		if(!listFoundObjects.contains(o)){
+    			list.add(o);
+    			Log.e("LPROGROCERIES", "missing: "+o.getName());
+    		}
+    		else
+    			Log.e("LPROGROCERIES", "found: "+o.getName());
+    	}
+    	
+    	return list;
+    }
+
 }

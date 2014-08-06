@@ -75,6 +75,7 @@ public class MainActivity extends Activity {
 				if (resultCode == Activity.RESULT_OK){
 					Intent result_intent = new Intent("com.example.ResultActivity");
 					result_intent.putExtra("PHOTO_URI", photo_uri.getPath());
+					result_intent.putExtra("Activity", "main");
 					startActivity(result_intent);
 				}
 				break;
@@ -93,6 +94,7 @@ public class MainActivity extends Activity {
 					Toast toast = Toast.makeText(getApplicationContext(), picturePath, Toast.LENGTH_LONG);
 					toast.show();
 					result_intent.putExtra("PHOTO_URI", picturePath);
+					result_intent.putExtra("Activity", "main");
 					startActivity(result_intent);
 				}
 		}

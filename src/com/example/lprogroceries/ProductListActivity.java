@@ -29,9 +29,10 @@ public class ProductListActivity extends Activity implements AddItemDialogListen
     protected void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState); 
 	    setContentView(R.layout.activity_list); 
-
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+	    
 	    db = new DatabaseHelper(getApplicationContext());
-	    	    
 	    
 	    if(db.getAllObjects().isEmpty()){
 		    

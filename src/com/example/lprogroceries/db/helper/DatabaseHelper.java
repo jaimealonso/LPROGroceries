@@ -303,6 +303,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	       // insert row
 	       long list_id = db.insert(TABLE_LIST, null, values);
 
+	       if(!list.getObjectList().isEmpty()){
+	    	   for(Object o : list.getObjectList()){
+	    		   this.createListObject(o.getId(), list_id);
+	    	   }
+	       }
+	       
 	       return list_id;
 	   }
 
@@ -434,11 +440,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		   ContentValues values = new ContentValues();
 	       values.put(KEY_ID_FOUND, capture.getIdFoundList());
 	       values.put(KEY_ID_MISSING, capture.getIdMissingList());
-	       values.put(KEY_CAPTURE_REF, capture.getRef());
+	       values.put(KEY_OBJECT_REF, capture.getRef());
 	       values.put(KEY_CREATED_AT, getDateTime());
 
 	       // insert row
-	       long capture_id = db.insert(TABLE_OBJECT, null, values);
+	       long capture_id = db.insert(TABLE_CAPTURE, null, values);
 	       return capture_id;
 	   }
 	   
@@ -461,11 +467,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 	       Capture capt = new Capture();
 	       capt.setId(c.getInt(c.getColumnIndex(KEY_ID)));
-	       capt.setRef((c.getString(c.getColumnIndex(KEY_CAPTURE_REF))));
+	       capt.setRef((c.getString(c.getColumnIndex(KEY_OBJECT_REF))));
 	       capt.setIdFoundList(c.getInt(c.getColumnIndex(KEY_ID_FOUND)));
 	       capt.setIdMissingList(c.getInt(c.getColumnIndex(KEY_ID_MISSING)));
-
-
+	       capt.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+	       
 	       return capt;
 	   }
 	   
@@ -486,9 +492,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	           do {
 	        	   Capture capt = new Capture();
 	    	       capt.setId(c.getInt(c.getColumnIndex(KEY_ID)));
-	    	       capt.setRef((c.getString(c.getColumnIndex(KEY_CAPTURE_REF))));
+	    	       capt.setRef((c.getString(c.getColumnIndex(KEY_OBJECT_REF))));
 	    	       capt.setIdFoundList(c.getInt(c.getColumnIndex(KEY_ID_FOUND)));
 	    	       capt.setIdMissingList(c.getInt(c.getColumnIndex(KEY_ID_MISSING)));
+	    	       capt.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
 
 	               // adding to todo list
 	               captures.add(capt);
@@ -508,7 +515,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	       ContentValues values = new ContentValues();
 	       values.put(KEY_ID_FOUND, capture.getIdFoundList());
 	       values.put(KEY_ID_MISSING, capture.getIdMissingList());
-	       values.put(KEY_CAPTURE_REF, capture.getRef());
+	       values.put(KEY_OBJECT_REF, capture.getRef());
 
 	       // updating row
 	       return db.update(TABLE_CAPTURE, values, KEY_ID + " = ?",

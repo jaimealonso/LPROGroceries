@@ -1,6 +1,10 @@
 package com.example.lprogroceries;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import com.example.lprogroceries.db.helper.DatabaseHelper;
+import com.example.lprogroceries.db.model.Capture;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -21,15 +25,16 @@ public class HistoryActivity extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState); 
 	    setContentView(R.layout.activity_history); 
-
-	    //generate list
-	    ArrayList<String> list = new ArrayList<String>();
-	    list.add("01-07-2014");
-	    list.add("08-07-2014");
-	    list.add("15-07-2014");
-
+	    
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+	    
+	    DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+	    
+	    List<Capture> allCaptures = db.getAllCaptures();
+	    
 	    //instantiate custom adapter
-	    HistoryAdapter adapter = new HistoryAdapter(list, this);
+	    HistoryAdapter adapter = new HistoryAdapter((ArrayList<Capture>) allCaptures, this);
 
 	    //handle listview and assign adapter
 	    ListView lView = (ListView)findViewById(R.id.listView4);
