@@ -5,11 +5,15 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
+import com.example.lprogroceries.db.helper.DatabaseHelper;
 import com.example.lprogroceries.db.model.Object;
+import com.example.lprogroceries.imageSSIM.CutImage;
+import com.example.lprogroceries.imageSSIM.ImageCompare;
 
 
 public class ImageDecode {
 
+	private DatabaseHelper db;
 	private List<Object> completeList;
 	
 	//////FIELDS/////
@@ -19,17 +23,13 @@ public class ImageDecode {
 	}
 	
 	
-	public LinkedList<Object> getFoundObjects(){
-		LinkedList<Object> list = new LinkedList<Object>();
+	public LinkedList<Object> getFoundObjects(String URI,  long id){
+		LinkedList<Object> listImage = CutImage.getObjects(URI);
+		List<Object> listDB = db.getAllObjectsByList(id);
+		LinkedList<Object> listFound = ImageCompare.compareList(listImage, listDB);
 		
-		//Picking 4 random objects
-		Random rnd = new Random();
-		
-		for(int i = 0; i < 4; i++){
-			list.add(completeList.get(rnd.nextInt(completeList.size())));
-		}
-		
-		return list;
+
+		return listFound;
 	}
 	
 	

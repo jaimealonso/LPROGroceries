@@ -59,7 +59,10 @@ public class ResultActivity extends Activity{
 	        
 	        ////////////////////DECODING PART//////////////////////
 	        ImageDecode image = new ImageDecode(db.getAllObjects());
-	        foundObjects = image.getFoundObjects();
+	        
+	        //Needs to get ID of the list :D
+	        
+	        foundObjects = image.getFoundObjects(photoUri, 0);
 	        missingObjects = getMissingObjects(foundObjects);
 	        //////////////////////////////////////////////////////
 	        
