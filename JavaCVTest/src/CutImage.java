@@ -13,16 +13,17 @@ public class CutImage {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		IplImage orig = cvLoadImage("lena.jpg");
+		IplImage orig = cvLoadImage("fridge\\original.jpg");
 		// Creating rectangle by which bounds image will be cropped
-		int lines = 4;
+		int lines = 2;
 		int heightTemp = orig.height() / lines;
-		int columns = 3;
+		int columns = 2;
 		int widthTemp = orig.width() / columns;
+		int count = 0;
 
 		for (int i = 0; i < lines; i++) {
 			for (int j = 0; j < columns; j++) {
-
+				count++;
 				CvRect r = new CvRect();
 
 				r.x(j * widthTemp);
@@ -34,17 +35,26 @@ public class CutImage {
 				// only
 				// be done on the ROI
 				cvSetImageROI(orig, r);
-				IplImage cropped = cvCreateImage(cvGetSize(orig), orig.depth(),
-						orig.nChannels());
+				IplImage cropped = cvCreateImage(cvGetSize(orig), IPL_DEPTH_8U,
+						1);
 				// Copy original image (only ROI) to the cropped image
-				cvCopy(orig, cropped);
-				String temp = "cropped" + i + ".jpg";
+				cvCvtColor(orig, cropped,CV_BGR2GRAY);
+				String temp = "fridge\\cropped" + count + ".jpg";
 				cvSaveImage(temp, cropped);
-				Lena.demo("lena.jpg", temp);
+				Lena.demo("fridge\\original.jpg", temp);
 				System.out.println("Iteration " + i);
 			}
 		}
 
+		
+		
+		for(int i=0;i<count;i++){
+			
+			System.out.println(SSIM.getSimilarity("fridge\\cropped1.jpg", "fridge\\cropped" + (1 + i) + ".jpg"));
+		}
+		
+		
+		
 	}
 
 }
