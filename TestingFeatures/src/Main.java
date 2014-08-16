@@ -26,7 +26,7 @@ public class Main {
 	    private static Mat lata;
 	    private static List<Mat> preLoadedImages;
 	    private static Mat resp;
-
+	    static int good=0;
 	/**
 	 * @param args
 	 */
@@ -34,10 +34,9 @@ public class Main {
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 
 
-		leche = Highgui.imread("Leche2.jpg", Highgui.CV_LOAD_IMAGE_COLOR);
-    	agua = Highgui.imread("agua.jpg", Highgui.CV_LOAD_IMAGE_COLOR);
-    	lata = Highgui.imread("lata.jpg", Highgui.CV_LOAD_IMAGE_COLOR);
-    	showResult(leche);
+		leche = Highgui.imread("ketchup.jpg", Highgui.CV_LOAD_IMAGE_COLOR);
+    	agua = Highgui.imread("manzana.jpg", Highgui.CV_LOAD_IMAGE_COLOR);
+    	lata = Highgui.imread("gaseosa.jpg", Highgui.CV_LOAD_IMAGE_COLOR);
     	
     	preLoadedImages = new ArrayList<Mat>();
     	
@@ -52,28 +51,29 @@ public class Main {
 			
 			FeatureTest SD = new FeatureTest();
 	    	SD.setFrame(resp);
-	    	
+	    	SD.DrawMatches();
 	    	SD.ProcessFrame();
-	    	if ( SD.Process( previousDetector.getDescriptors().get(0), "Leche")){
-	    		System.out.println("LECHE DETECTADA");
-				
+	    	if ( SD.Process( previousDetector.getDescriptors().get(0), "Leche")&& SD.clean()){
+	    		System.out.println("KETCHUP DETECTADO");
+				good=1;
 		    	
 				
 		    	}
-	    	else if( SD.Process( previousDetector.getDescriptors().get(1), "Agua")){
-	    		System.out.println("AGUA DETECTADA");
-				
+	    	if( SD.Process( previousDetector.getDescriptors().get(1), "Agua")&& SD.clean()){
+	    		System.out.println("MANZANA DETECTADA");
+				good=1;
 		    	
 				
 		    	}
-	    	else if( SD.Process( previousDetector.getDescriptors().get(2), "Lata")){
-	    		System.out.println("LATA DETECTADA");
-				
-		    	
-				
+	    	if( SD.Process( previousDetector.getDescriptors().get(2), "Lata")&& SD.clean()){
+	    		System.out.println("GASEOSA DETECTADA");
+	    		good=1;
 		    	}
-	    	else
+	    	if(good==0)
 	    		System.out.println("NADA DETECTADO");
+	    	showResult(leche);
+	    	showResult(agua);
+	    	showResult(lata);
 	    	showResult(resp);
 
 	}
