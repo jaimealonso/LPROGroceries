@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.opencv.android.OpenCVLoader;
+
 import com.example.lprogroceries.db.helper.DatabaseHelper;
 import com.example.lprogroceries.db.model.Capture;
 import com.example.lprogroceries.db.model.MyList;
@@ -35,6 +37,12 @@ public class ResultActivity extends Activity{
 	private Capture currentCapture;
 	private DatabaseHelper db;
 	
+	static{
+		if(!OpenCVLoader.initDebug()){
+			Log.e("LPROGroceries", "error loading opencv");
+		}
+	}
+	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +66,7 @@ public class ResultActivity extends Activity{
 	        photoUri = intent.getStringExtra("PHOTO_URI");
 	        
 	        ////////////////////DECODING PART//////////////////////
-	        ImageDecode image = new ImageDecode(db.getAllObjects());
+	        ImageDecode image = new ImageDecode(db.getAllObjectsByList(1), photoUri);
 	        foundObjects = image.getFoundObjects();
 	        missingObjects = getMissingObjects(foundObjects);
 	        //////////////////////////////////////////////////////

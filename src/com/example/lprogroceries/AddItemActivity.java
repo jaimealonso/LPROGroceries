@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -79,13 +80,19 @@ public class AddItemActivity extends Activity{
 			@Override
 			public void onClick(View v) {
 				String name = name_field.getText().toString();
+								
 				Object temp = new Object(name,photo_uri);
 				
+				Log.e("LPROGroceries", "Name: "+temp.getName()+" Ref: "+temp.getRef());
+
 				DatabaseHelper db = new DatabaseHelper(getApplicationContext());
 				db.createObject(temp);
 				
 				Object o = db.getObjectByName(name);
 				db.createListObject(o.getId(), list_objectsId);
+				
+				Log.e("LPROGroceries", "Name: "+o.getName()+" Ref: "+o.getRef());
+
 				
 				finish();
 			}

@@ -9,9 +9,35 @@ package com.example.lprogroceries;
 
 public final class R {
     public static final class array {
-        public static final int list=0x7f040000;
+        public static final int list=0x7f050000;
     }
     public static final class attr {
+        /** <p>May be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+<p>May be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>any</code></td><td>-1</td><td></td></tr>
+<tr><td><code>back</code></td><td>99</td><td></td></tr>
+<tr><td><code>front</code></td><td>98</td><td></td></tr>
+</table>
+         */
+        public static final int camera_id=0x7f010001;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int show_fps=0x7f010000;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -22,8 +48,8 @@ public final class R {
     
  Default screen margins, per the Android Design guidelines. 
          */
-        public static final int activity_horizontal_margin=0x7f050000;
-        public static final int activity_vertical_margin=0x7f050001;
+        public static final int activity_horizontal_margin=0x7f060000;
+        public static final int activity_vertical_margin=0x7f060001;
     }
     public static final class drawable {
         public static final int arrowicon=0x7f020000;
@@ -32,31 +58,34 @@ public final class R {
         public static final int plusicon=0x7f020003;
     }
     public static final class id {
-        public static final int about=0x7f090017;
-        public static final int arrow_btn=0x7f090013;
-        public static final int button1=0x7f09000b;
-        public static final int button2=0x7f09000c;
-        public static final int button3=0x7f09000d;
-        public static final int camera_btn=0x7f090001;
-        public static final int cancel_btn=0x7f090007;
-        public static final int delete_btn=0x7f090015;
-        public static final int gallery_btn=0x7f090003;
-        public static final int history=0x7f090016;
-        public static final int history_item_string=0x7f090012;
-        public static final int imageButton1=0x7f090009;
-        public static final int imageView1=0x7f09000e;
-        public static final int linearLayout1=0x7f09000f;
-        public static final int listView1=0x7f090010;
-        public static final int listView2=0x7f090011;
-        public static final int listView3=0x7f09000a;
-        public static final int listView4=0x7f090008;
-        public static final int list_item_string=0x7f090014;
-        public static final int name_field=0x7f090000;
-        public static final int ok_btn=0x7f090006;
-        public static final int preview=0x7f090005;
-        public static final int share=0x7f090018;
-        public static final int textView1=0x7f090004;
-        public static final int textView2=0x7f090002;
+        public static final int about=0x7f04001a;
+        public static final int any=0x7f040000;
+        public static final int arrow_btn=0x7f040016;
+        public static final int back=0x7f040001;
+        public static final int button1=0x7f04000e;
+        public static final int button2=0x7f04000f;
+        public static final int button3=0x7f040010;
+        public static final int camera_btn=0x7f040004;
+        public static final int cancel_btn=0x7f04000a;
+        public static final int delete_btn=0x7f040018;
+        public static final int front=0x7f040002;
+        public static final int gallery_btn=0x7f040006;
+        public static final int history=0x7f040019;
+        public static final int history_item_string=0x7f040015;
+        public static final int imageButton1=0x7f04000c;
+        public static final int imageView1=0x7f040011;
+        public static final int linearLayout1=0x7f040012;
+        public static final int listView1=0x7f040013;
+        public static final int listView2=0x7f040014;
+        public static final int listView3=0x7f04000d;
+        public static final int listView4=0x7f04000b;
+        public static final int list_item_string=0x7f040017;
+        public static final int name_field=0x7f040003;
+        public static final int ok_btn=0x7f040009;
+        public static final int preview=0x7f040008;
+        public static final int share=0x7f04001b;
+        public static final int textView1=0x7f040007;
+        public static final int textView2=0x7f040005;
     }
     public static final class layout {
         public static final int activity_additem=0x7f030000;
@@ -68,28 +97,28 @@ public final class R {
         public static final int row_list=0x7f030006;
     }
     public static final class menu {
-        public static final int main=0x7f080000;
-        public static final int result=0x7f080001;
+        public static final int main=0x7f090000;
+        public static final int result=0x7f090001;
     }
     public static final class string {
-        public static final int about=0x7f06000c;
-        public static final int action_settings=0x7f060002;
-        public static final int app_name=0x7f060000;
-        public static final int camera=0x7f060010;
-        public static final int cancel=0x7f060009;
-        public static final int developed_by=0x7f06000a;
-        public static final int edit_list=0x7f060005;
-        public static final int gallery=0x7f060011;
-        public static final int hello_world=0x7f060001;
-        public static final int history=0x7f06000b;
-        public static final int name=0x7f06000e;
-        public static final int ok=0x7f060008;
-        public static final int picture=0x7f06000f;
-        public static final int products_found=0x7f060006;
-        public static final int products_to_be_bought=0x7f060007;
-        public static final int select_picture=0x7f060004;
-        public static final int share=0x7f06000d;
-        public static final int take_picture=0x7f060003;
+        public static final int about=0x7f07000c;
+        public static final int action_settings=0x7f070002;
+        public static final int app_name=0x7f070000;
+        public static final int camera=0x7f070010;
+        public static final int cancel=0x7f070009;
+        public static final int developed_by=0x7f07000a;
+        public static final int edit_list=0x7f070005;
+        public static final int gallery=0x7f070011;
+        public static final int hello_world=0x7f070001;
+        public static final int history=0x7f07000b;
+        public static final int name=0x7f07000e;
+        public static final int ok=0x7f070008;
+        public static final int picture=0x7f07000f;
+        public static final int products_found=0x7f070006;
+        public static final int products_to_be_bought=0x7f070007;
+        public static final int select_picture=0x7f070004;
+        public static final int share=0x7f07000d;
+        public static final int take_picture=0x7f070003;
     }
     public static final class style {
         /** 
@@ -122,12 +151,67 @@ public final class R {
             backward-compatibility can go here.
         
          */
-        public static final int AppBaseTheme=0x7f070000;
+        public static final int AppBaseTheme=0x7f080000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f070001;
+        public static final int AppTheme=0x7f080001;
     }
+    public static final class styleable {
+        /** Attributes that can be used with a CameraBridgeViewBase.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #CameraBridgeViewBase_camera_id com.example.lprogroceries:camera_id}</code></td><td></td></tr>
+           <tr><td><code>{@link #CameraBridgeViewBase_show_fps com.example.lprogroceries:show_fps}</code></td><td></td></tr>
+           </table>
+           @see #CameraBridgeViewBase_camera_id
+           @see #CameraBridgeViewBase_show_fps
+         */
+        public static final int[] CameraBridgeViewBase = {
+            0x7f010000, 0x7f010001
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.example.lprogroceries.R.attr#camera_id}
+          attribute's value can be found in the {@link #CameraBridgeViewBase} array.
+
+
+          <p>May be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+<p>May be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>any</code></td><td>-1</td><td></td></tr>
+<tr><td><code>back</code></td><td>99</td><td></td></tr>
+<tr><td><code>front</code></td><td>98</td><td></td></tr>
+</table>
+          @attr name com.example.lprogroceries:camera_id
+        */
+        public static final int CameraBridgeViewBase_camera_id = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.example.lprogroceries.R.attr#show_fps}
+          attribute's value can be found in the {@link #CameraBridgeViewBase} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.example.lprogroceries:show_fps
+        */
+        public static final int CameraBridgeViewBase_show_fps = 0;
+    };
 }

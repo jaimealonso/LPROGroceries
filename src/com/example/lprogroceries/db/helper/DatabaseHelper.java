@@ -161,7 +161,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	       Object obj = new Object();
 	       obj.setId(c.getInt(c.getColumnIndex(KEY_ID)));
 	       obj.setName((c.getString(c.getColumnIndex(KEY_OBJECT_NAME))));
-
+	       obj.setRef((c.getString(c.getColumnIndex(KEY_OBJECT_REF))));
+	       
 	       return obj;
 	   }
 	   
@@ -184,7 +185,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	       Object obj = new Object();
 	       obj.setId(c.getInt(c.getColumnIndex(KEY_ID)));
 	       obj.setName((c.getString(c.getColumnIndex(KEY_OBJECT_NAME))));
-
+	       obj.setRef((c.getString(c.getColumnIndex(KEY_OBJECT_REF))));
+	       
 	       return obj;
 	   }
 
@@ -206,6 +208,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	               Object obj = new Object();
 	               obj.setId(c.getInt((c.getColumnIndex(KEY_ID))));
 	               obj.setName((c.getString(c.getColumnIndex(KEY_OBJECT_NAME))));
+	    	       obj.setRef((c.getString(c.getColumnIndex(KEY_OBJECT_REF))));
 
 	               // adding to todo list
 	               objects.add(obj);
@@ -238,6 +241,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	               Object obj = new Object();
 	               obj.setId(c.getInt((c.getColumnIndex(KEY_ID))));
 	               obj.setName((c.getString(c.getColumnIndex(KEY_OBJECT_NAME))));
+	    	       obj.setRef((c.getString(c.getColumnIndex(KEY_OBJECT_REF))));
 
 	               // adding to todo list
 	               objects.add(obj);
