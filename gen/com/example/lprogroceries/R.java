@@ -32,33 +32,40 @@ public final class R {
         public static final int plusicon=0x7f020003;
     }
     public static final class id {
-        public static final int about=0x7f090011;
-        public static final int arrow_btn=0x7f09000d;
-        public static final int button1=0x7f090003;
-        public static final int button2=0x7f090004;
-        public static final int button3=0x7f090005;
-        public static final int delete_btn=0x7f09000f;
-        public static final int history=0x7f090010;
-        public static final int history_item_string=0x7f09000c;
-        public static final int imageButton1=0x7f090001;
-        public static final int imageView1=0x7f090006;
-        public static final int linearLayout1=0x7f090007;
-        public static final int listView1=0x7f090008;
-        public static final int listView2=0x7f090009;
-        public static final int listView3=0x7f090002;
-        public static final int listView4=0x7f090000;
-        public static final int list_item_string=0x7f09000e;
-        public static final int share=0x7f090012;
-        public static final int textView1=0x7f09000a;
-        public static final int textView2=0x7f09000b;
+        public static final int about=0x7f090017;
+        public static final int arrow_btn=0x7f090013;
+        public static final int button1=0x7f09000b;
+        public static final int button2=0x7f09000c;
+        public static final int button3=0x7f09000d;
+        public static final int camera_btn=0x7f090001;
+        public static final int cancel_btn=0x7f090007;
+        public static final int delete_btn=0x7f090015;
+        public static final int gallery_btn=0x7f090003;
+        public static final int history=0x7f090016;
+        public static final int history_item_string=0x7f090012;
+        public static final int imageButton1=0x7f090009;
+        public static final int imageView1=0x7f09000e;
+        public static final int linearLayout1=0x7f09000f;
+        public static final int listView1=0x7f090010;
+        public static final int listView2=0x7f090011;
+        public static final int listView3=0x7f09000a;
+        public static final int listView4=0x7f090008;
+        public static final int list_item_string=0x7f090014;
+        public static final int name_field=0x7f090000;
+        public static final int ok_btn=0x7f090006;
+        public static final int preview=0x7f090005;
+        public static final int share=0x7f090018;
+        public static final int textView1=0x7f090004;
+        public static final int textView2=0x7f090002;
     }
     public static final class layout {
-        public static final int activity_history=0x7f030000;
-        public static final int activity_list=0x7f030001;
-        public static final int activity_main=0x7f030002;
-        public static final int activity_result=0x7f030003;
-        public static final int row_history=0x7f030004;
-        public static final int row_list=0x7f030005;
+        public static final int activity_additem=0x7f030000;
+        public static final int activity_history=0x7f030001;
+        public static final int activity_list=0x7f030002;
+        public static final int activity_main=0x7f030003;
+        public static final int activity_result=0x7f030004;
+        public static final int row_history=0x7f030005;
+        public static final int row_list=0x7f030006;
     }
     public static final class menu {
         public static final int main=0x7f080000;
@@ -68,12 +75,16 @@ public final class R {
         public static final int about=0x7f06000c;
         public static final int action_settings=0x7f060002;
         public static final int app_name=0x7f060000;
+        public static final int camera=0x7f060010;
         public static final int cancel=0x7f060009;
         public static final int developed_by=0x7f06000a;
         public static final int edit_list=0x7f060005;
+        public static final int gallery=0x7f060011;
         public static final int hello_world=0x7f060001;
         public static final int history=0x7f06000b;
+        public static final int name=0x7f06000e;
         public static final int ok=0x7f060008;
+        public static final int picture=0x7f06000f;
         public static final int products_found=0x7f060006;
         public static final int products_to_be_bought=0x7f060007;
         public static final int select_picture=0x7f060004;

@@ -15,5 +15,10 @@
 	<string name="history">Historial</string>
 	<string name="about">Acerca de</string>
 	<string name="share">Compartir</string>
-				
+	<string name="name">Nombre</string>
+	<string name="picture">Imagen</string>
+	<string name="camera">Cámara</string>
+	<string name="gallery">Galería</string>
+	
+					
 </resources>

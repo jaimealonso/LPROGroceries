@@ -15,5 +15,9 @@
 	<string name="history">History</string>
 	<string name="about">About</string>
 	<string name="share">Share</string>
+	<string name="name">Name</string>
+	<string name="picture">Picture</string>
+	<string name="camera">Camera</string>
+	<string name="gallery">Gallery</string>
 	
 </resources>

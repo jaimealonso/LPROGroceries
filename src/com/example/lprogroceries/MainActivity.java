@@ -2,6 +2,11 @@ package com.example.lprogroceries;
 
 import java.io.File;
 import java.util.Date;
+import java.util.LinkedList;
+
+import com.example.lprogroceries.db.helper.DatabaseHelper;
+import com.example.lprogroceries.db.model.MyList;
+import com.example.lprogroceries.db.model.Object;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -28,6 +33,14 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
+	    DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+	    
+	    //CREATING USER LIST FOR THE FIRST TIME
+	    if(db.getAllLists().isEmpty()){
+	    	MyList list_objects = new MyList(1, "user", new LinkedList<Object>());
+	    	db.createList(list_objects);
+	    }
+
         Button take_picture = (Button) findViewById(R.id.button1);
         take_picture.setOnClickListener(new View.OnClickListener() {
 			

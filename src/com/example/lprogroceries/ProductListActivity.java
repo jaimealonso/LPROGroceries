@@ -34,34 +34,7 @@ public class ProductListActivity extends Activity implements AddItemDialogListen
 	    
 	    db = new DatabaseHelper(getApplicationContext());
 	    
-	    if(db.getAllObjects().isEmpty()){
-		    
-	        Object o1 = new Object(1, "CocaCola", "");
-	        Object o2 = new Object(2, "Pepsi", "");
-	        Object o3 = new Object(3, "Aquarius", "");
-	        Object o4 = new Object(4, "Fanta", "");
-	        Object o5 = new Object(5, "Kas", "");
-	        Object o6 = new Object(6, "Sprite", "");
-	        Object o7 = new Object(7, "SevenUp", "");
-	        
-	        db.createObject(o1);
-	        db.createObject(o2);
-	        db.createObject(o3);
-	        db.createObject(o4);
-	        db.createObject(o5);
-	        db.createObject(o6);
-	        db.createObject(o7);
-	        
-	    }
-	    
-	    if(db.getAllLists().isEmpty()){
-	    	list_objectsId = 1;
-	    	MyList list_objects = new MyList(list_objectsId, "user", new LinkedList<Object>());
-	    	db.createList(list_objects);
-	    }
-	    else{
-	    	list_objectsId = 1;
-	    }
+	    list_objectsId = 1;
 	    
 	    //generate list
 	    List<Object> list = db.getAllObjectsByList(list_objectsId);
@@ -79,7 +52,7 @@ public class ProductListActivity extends Activity implements AddItemDialogListen
 			
 			@Override
 			public void onClick(View v) {
-				List<Object> totalList = db.getAllObjects();
+				/*List<Object> totalList = db.getAllObjects();
 				List<Object> userList = db.getAllObjectsByList(list_objectsId);
 				
 				
@@ -88,7 +61,10 @@ public class ProductListActivity extends Activity implements AddItemDialogListen
 				
 				AddItemDialog aidialog = AddItemDialog.newInstance(items);
 				
-				aidialog.show(getFragmentManager(), null);
+				aidialog.show(getFragmentManager(), null);*/
+				Intent additem_intent = new Intent("com.example.AddItemActivity");
+				additem_intent.putExtra("list", list_objectsId);
+				startActivity(additem_intent);
 				
 			}
 		});
@@ -154,6 +130,12 @@ public class ProductListActivity extends Activity implements AddItemDialogListen
 		long idObject = db.getObjectByName(objectName).getId();
 		db.deleteObjectFromList(idObject, list_objectsId);
 		
+		((ProductListAdapter) lView.getAdapter()).setMyList(db.getAllObjectsByList(list_objectsId));
+	}
+	
+	@Override
+	public void onResume(){
+		super.onResume();
 		((ProductListAdapter) lView.getAdapter()).setMyList(db.getAllObjectsByList(list_objectsId));
 	}
 
