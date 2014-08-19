@@ -45,21 +45,14 @@ public class HistoryActivity extends Activity{
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.result, menu);
-        /*super.onCreateOptionsMenu(menu);
-        MenuItem history = menu.add(0, 0, 0, R.string.history);
-        history.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-        MenuItem about = menu.add(0, 1, 1, R.string.about);
-        about.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);*/
+        getMenuInflater().inflate(R.menu.basic, menu);
 
-        return true;
+       return true;
     }
 	
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
         
         switch(id){
@@ -67,10 +60,6 @@ public class HistoryActivity extends Activity{
         		AboutDialog about = new AboutDialog();
         		about.show(getFragmentManager(), null);
         		return true;
-        	case R.id.share:
-        		return true;
-        //if (id == R.id.about || id == R.id.history) {
-            //return true;
         }
         
         return super.onOptionsItemSelected(item);

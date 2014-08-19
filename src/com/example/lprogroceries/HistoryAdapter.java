@@ -51,17 +51,14 @@ public class HistoryAdapter extends BaseAdapter implements ListAdapter {
 			view = inflater.inflate(R.layout.row_history, null);
 		} 
 
-		//Handle TextView and display string from your list
 		TextView listItemText = (TextView)view.findViewById(R.id.history_item_string); 
 		listItemText.setText(list.get(position).getCreated_at()); 
 
-		//Handle buttons and add onClickListeners
 
 	    ImageButton arrow_btn = (ImageButton) view.findViewById(R.id.arrow_btn);
 		arrow_btn.setOnClickListener(new View.OnClickListener(){
         @Override
         public void onClick(View v) { 
-            //do something
         	Intent result_intent = new Intent("com.example.ResultActivity");
         	
         	result_intent.putExtra("ID_HISTORY", list.get(position).getId());

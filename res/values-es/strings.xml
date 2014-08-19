@@ -19,6 +19,7 @@
 	<string name="picture">Imagen</string>
 	<string name="camera">Cámara</string>
 	<string name="gallery">Galería</string>
+	<string name="warning">Por favor, añada elementos a su lista</string>
 	
 					
 </resources>

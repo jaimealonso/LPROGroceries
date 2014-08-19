@@ -30,12 +30,15 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ShareActionProvider;
 import android.widget.Toast;
 
 public class ResultActivity extends Activity{
 
 	private Capture currentCapture;
 	private DatabaseHelper db;
+	private ShareActionProvider mShareActionProvider;
+	private List<Object> foundObjects, missingObjects;
 	
 	static{
 		if(!OpenCVLoader.initDebug()){
@@ -59,7 +62,7 @@ public class ResultActivity extends Activity{
         
         String photoUri = null;
         
-        List<Object> foundObjects = null, missingObjects = null;
+        //List<Object> foundObjects = null, missingObjects = null;
         
         if("main".equals(previousActivity)){
         
@@ -79,6 +82,8 @@ public class ResultActivity extends Activity{
 	        
 	    	currentCapture = new Capture(idFoundList, idMissingList, photoUri, null);
 	    	db.createCapture(currentCapture);
+	    	
+	    	Log.e("LPROGROCERIES", "Detection finished, I will show you the results");
 	    	
 	        
         }
@@ -121,43 +126,30 @@ public class ResultActivity extends Activity{
         found.setAdapter(foundAdapter);
         missing.setAdapter(missingAdapter);
 
-        /*File imgFile = new  File(photoUri);
-        if(imgFile.exists()){
-
-        	Toast toast = Toast.makeText(getApplicationContext(), "IT WORKS! :D", Toast.LENGTH_LONG);
-        	toast.show();
-            //Bitmap myBitmap = BitmapFactory.decodeFile(photoUri);
-
-            ImageView myImage = (ImageView) findViewById(R.id.imageView1);
-
-            myImage.setImageURI(Uri.fromFile(imgFile));
-            //myImage.setImageDrawable(getResources().getDrawable(R.drawable.ic_launcher));
-
-        }
-        else{
-        	Toast toast = Toast.makeText(getApplicationContext(), "IT DOESN'T WORK :(", Toast.LENGTH_LONG);
-        	toast.show();
-        }*/
 	}
 	
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.result, menu);
-        /*super.onCreateOptionsMenu(menu);
-        MenuItem history = menu.add(0, 0, 0, R.string.history);
-        history.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-        MenuItem about = menu.add(0, 1, 1, R.string.about);
-        about.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);*/
 
+        MenuItem item = menu.findItem(R.id.share);
+
+        mShareActionProvider = (ShareActionProvider) item.getActionProvider();
+        
+		Intent sendIntent = new Intent();
+		sendIntent.setAction(Intent.ACTION_SEND);
+		sendIntent.putExtra(Intent.EXTRA_TEXT, buildString());
+		sendIntent.setType("text/plain");
+		
+		mShareActionProvider.setShareIntent(sendIntent);
+        
         return true;
     }
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
         
         switch(id){
@@ -167,11 +159,38 @@ public class ResultActivity extends Activity{
         		return true;
         	case R.id.share:
         		return true;
-        //if (id == R.id.about || id == R.id.history) {
-            //return true;
         }
         
         return super.onOptionsItemSelected(item);
+    }
+    
+    private String buildString(){
+    	String result = "";
+    	
+    	result += getResources().getString(R.string.products_found)+": ";
+    	
+    	for(int i = 0; i < foundObjects.size(); i++){
+    		if(i == (foundObjects.size()-1)){
+    			result += foundObjects.get(i).getName()+".\n";
+    		}
+    		else{
+    			result += foundObjects.get(i).getName()+", ";
+    		}
+    	}
+    	
+    	
+    	result += getResources().getString(R.string.products_to_be_bought)+": ";
+    	
+    	for(int i = 0; i < missingObjects.size(); i++){
+    		if(i == (missingObjects.size()-1)){
+    			result += missingObjects.get(i).getName()+".\n";
+    		}
+    		else{
+    			result += missingObjects.get(i).getName()+", ";
+    		}
+    	}
+    	
+    	return result;
     }
     
     public static Bitmap scaleDown(Bitmap realImage, float maxImageSize, boolean filter) {

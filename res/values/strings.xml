@@ -19,5 +19,6 @@
 	<string name="picture">Picture</string>
 	<string name="camera">Camera</string>
 	<string name="gallery">Gallery</string>
+	<string name="warning">Please, add elements to your list</string>
 	
 </resources>

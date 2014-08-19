@@ -67,7 +67,7 @@ public class ProductListAdapter extends BaseAdapter implements ListAdapter {
 	        @Override
 	        public void onClick(View v) { 
 	            PLAdapterListener activity = (PLAdapterListener) context;
-	            activity.onDelete(list.get(position).getName());
+	            activity.onDelete(list.get(position).getId());
 	        }
 	    });
 

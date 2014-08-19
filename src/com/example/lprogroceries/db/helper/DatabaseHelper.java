@@ -155,13 +155,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 	       Cursor c = db.rawQuery(selectQuery, null);
 
-	       if (c != null)
-	           c.moveToFirst();
+	       Object obj = null;
 
-	       Object obj = new Object();
-	       obj.setId(c.getInt(c.getColumnIndex(KEY_ID)));
-	       obj.setName((c.getString(c.getColumnIndex(KEY_OBJECT_NAME))));
-	       obj.setRef((c.getString(c.getColumnIndex(KEY_OBJECT_REF))));
+	       if (c != null)
+	    	   
+	           if(c.moveToFirst()){
+	        	   obj = new Object();
+		       obj.setId(c.getInt(c.getColumnIndex(KEY_ID)));
+		       obj.setName((c.getString(c.getColumnIndex(KEY_OBJECT_NAME))));
+		       obj.setRef((c.getString(c.getColumnIndex(KEY_OBJECT_REF))));
+		       
+		       Log.e("DatabaseHelper", obj.getName()+" "+obj.getId());
+	       }
 	       
 	       return obj;
 	   }
@@ -224,11 +229,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	   public List<Object> getAllObjectsByList(long list_id) {
 	       List<Object> objects = new ArrayList<Object>();
 
-	       String selectQuery = "SELECT  * FROM " + TABLE_OBJECT + " tobj, "
-	               + TABLE_LIST + " tlist, " + TABLE_LIST_OBJECT + " tlo WHERE tlist."
-	               + KEY_ID + " = '" + list_id + "'" + " AND tlist." + KEY_ID
-	               + " = " + "tlo." + KEY_LIST_ID + " AND tOBJ." + KEY_ID + " = "
-	               + "tlo." + KEY_OBJECT_ID;
+//	       String selectQuery = "SELECT  * FROM " + TABLE_OBJECT + " tobj, "
+//	               + TABLE_LIST + " tlist, " + TABLE_LIST_OBJECT + " tlo WHERE tlist."
+//	               + KEY_ID + " = '" + list_id + "'" + " AND tlist." + KEY_ID
+//	               + " = " + "tlo." + KEY_LIST_ID + " AND tOBJ." + KEY_ID + " = "
+//	               + "tlo." + KEY_OBJECT_ID;
+	       String selectQuery = "SELECT * FROM " + TABLE_LIST_OBJECT + " WHERE " +
+	    	   	KEY_LIST_ID + " = '" + list_id + "'";
 
 	       Log.e(LOG, selectQuery);
 
@@ -238,10 +245,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	       // looping through all rows and adding to list
 	       if (c.moveToFirst()) {
 	           do {
-	               Object obj = new Object();
-	               obj.setId(c.getInt((c.getColumnIndex(KEY_ID))));
-	               obj.setName((c.getString(c.getColumnIndex(KEY_OBJECT_NAME))));
-	    	       obj.setRef((c.getString(c.getColumnIndex(KEY_OBJECT_REF))));
+	               Object obj = this.getObject(c.getInt(c.getColumnIndex(KEY_OBJECT_ID)));
+	               //Object obj = new Object();
+	        	   //obj.setId(c.getInt((c.getColumnIndex(KEY_OBJECT_ID))));
+	               //obj.setName((c.getString(c.getColumnIndex(KEY_OBJECT_NAME))));
+	    	       //obj.setRef((c.getString(c.getColumnIndex(KEY_OBJECT_REF))));
 
 	               // adding to todo list
 	               objects.add(obj);
@@ -309,6 +317,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 	       if(!list.getObjectList().isEmpty()){
 	    	   for(Object o : list.getObjectList()){
+	    		   Log.e("DatabaseHelper", "Object_id: "+o.getId()+" Listid: "+list_id);
 	    		   this.createListObject(o.getId(), list_id);
 	    	   }
 	       }

@@ -33,8 +33,8 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
-	    DatabaseHelper db = new DatabaseHelper(getApplicationContext());
-	    
+	    final DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+	    	    
 	    //CREATING USER LIST FOR THE FIRST TIME
 	    if(db.getAllLists().isEmpty()){
 	    	MyList list_objects = new MyList(1, "user", new LinkedList<Object>());
@@ -46,15 +46,19 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Intent camera_intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-				File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-				path.mkdirs();
-				File pic = new File(path, new Date().getTime()+".jpg");
-				photo_uri = Uri.fromFile(pic);
-				Toast toast = Toast.makeText(getApplicationContext(), photo_uri.getPath(), Toast.LENGTH_LONG);
-				toast.show();
-				camera_intent.putExtra(MediaStore.EXTRA_OUTPUT, photo_uri);
-				startActivityForResult(camera_intent, CAPTURE_IMAGE);
+				if(db.getAllObjectsByList(1).isEmpty()){
+					Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.warning), Toast.LENGTH_LONG);
+					toast.show();
+				}
+				else{
+					Intent camera_intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+					File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+					path.mkdirs();
+					File pic = new File(path, new Date().getTime()+".jpg");
+					photo_uri = Uri.fromFile(pic);
+					camera_intent.putExtra(MediaStore.EXTRA_OUTPUT, photo_uri);
+					startActivityForResult(camera_intent, CAPTURE_IMAGE);
+				}
 			}
 		});
         
@@ -63,9 +67,15 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Intent photo_intent = new Intent(Intent.ACTION_PICK);
-				photo_intent.setType("image/*");
-				startActivityForResult(photo_intent, SELECT_PHOTO);
+				if(db.getAllObjectsByList(1).isEmpty()){
+					Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.warning), Toast.LENGTH_LONG);
+					toast.show();
+				}
+				else{
+					Intent photo_intent = new Intent(Intent.ACTION_PICK);
+					photo_intent.setType("image/*");
+					startActivityForResult(photo_intent, SELECT_PHOTO);
+				}
 			}
 		});
         
@@ -118,11 +128,6 @@ public class MainActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
-        /*super.onCreateOptionsMenu(menu);
-        MenuItem history = menu.add(0, 0, 0, R.string.history);
-        history.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-        MenuItem about = menu.add(0, 1, 1, R.string.about);
-        about.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);*/
 
         return true;
     }
@@ -142,8 +147,6 @@ public class MainActivity extends Activity {
         	case R.id.history:
         		startActivity(new Intent(this, HistoryActivity.class));
         		break;
-        //if (id == R.id.about || id == R.id.history) {
-            //return true;
         	default:
                 return super.onOptionsItemSelected(item);
         }

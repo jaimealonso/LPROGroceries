@@ -58,7 +58,7 @@ containing a value of this type.
         public static final int plusicon=0x7f020003;
     }
     public static final class id {
-        public static final int about=0x7f04001a;
+        public static final int about=0x7f040019;
         public static final int any=0x7f040000;
         public static final int arrow_btn=0x7f040016;
         public static final int back=0x7f040001;
@@ -70,7 +70,7 @@ containing a value of this type.
         public static final int delete_btn=0x7f040018;
         public static final int front=0x7f040002;
         public static final int gallery_btn=0x7f040006;
-        public static final int history=0x7f040019;
+        public static final int history=0x7f04001a;
         public static final int history_item_string=0x7f040015;
         public static final int imageButton1=0x7f04000c;
         public static final int imageView1=0x7f040011;
@@ -97,8 +97,9 @@ containing a value of this type.
         public static final int row_list=0x7f030006;
     }
     public static final class menu {
-        public static final int main=0x7f090000;
-        public static final int result=0x7f090001;
+        public static final int basic=0x7f090000;
+        public static final int main=0x7f090001;
+        public static final int result=0x7f090002;
     }
     public static final class string {
         public static final int about=0x7f07000c;
@@ -119,6 +120,7 @@ containing a value of this type.
         public static final int select_picture=0x7f070004;
         public static final int share=0x7f07000d;
         public static final int take_picture=0x7f070003;
+        public static final int warning=0x7f070012;
     }
     public static final class style {
         /** 

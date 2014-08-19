@@ -77,16 +77,7 @@ public class ImageDecode{
 		}
 		
 		return list;
-		/*LinkedList<Object> list = new LinkedList<Object>();
-		
-		//Picking 4 random objects
-		Random rnd = new Random();
-		
-		for(int i = 0; i < 4; i++){
-			list.add(completeList.get(rnd.nextInt(completeList.size())));
-		}
-		
-		return list;*/
+
 	}
 	
 	
