@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.lprogroceries.HistoryActivity"  >
+
+    <item
+        android:id="@+id/share"
+        android:title="@string/share"
+        android:showAsAction="ifRoom|withText"  
+        android:actionProviderClass= "android.widget.ShareActionProvider" />
+
+    <item
+        android:id="@+id/about"
+        android:title="@string/about"
+        android:showAsAction="ifRoom|withText"  />
+
+</menu>
