@@ -107,7 +107,7 @@ public class AddItemActivity extends Activity{
 			case CAPTURE_IMAGE:
 				if (resultCode == Activity.RESULT_OK){					
 			        Bitmap scaledBitmap = scaleDown(BitmapFactory.decodeFile(photo_uri), 500.0f, true);			        
-			        ImageView result = (ImageView) findViewById(R.id.preview);     
+			        ImageView result = (ImageView) findViewById(R.id.preview);   
 			        result.setImageBitmap(scaledBitmap);
 				}
 				break;
