@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -20,17 +21,20 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.droid4you.util.cropimage.CropImage;
 import com.example.lprogroceries.db.helper.*;
 import com.example.lprogroceries.db.model.Object;
+
 
 
 public class AddItemActivity extends Activity{
 	
     private static final int CAPTURE_IMAGE = 100;
 	private static final int SELECT_PHOTO = 200;
+	private static final int CROP_PHOTO = 300;
 	private String photo_uri = null;
 	private int list_objectsId;
-
+	private ImageView image;
 	
 	
 	@Override
@@ -39,6 +43,9 @@ public class AddItemActivity extends Activity{
 	    setContentView(R.layout.activity_additem); 
 	    ActionBar actionBar = getActionBar();
 	    actionBar.setDisplayHomeAsUpEnabled(true);
+	    
+		image = (ImageView) findViewById(R.id.preview);
+		image.setTag(false);
 	    
 	    Intent intent = getIntent();
 	    list_objectsId = intent.getIntExtra("list", 1);
@@ -81,6 +88,14 @@ public class AddItemActivity extends Activity{
 			public void onClick(View v) {
 				String name = name_field.getText().toString();
 								
+		        //Drawable result = (Drawable) ((ImageView) findViewById(R.id.preview)).getDrawable();;     
+
+		        //Drawable ic_launcher = getResources().getDrawable(R.drawable.ic_launcher);
+		        
+		        if("".equals(name) || !(Boolean)image.getTag()){
+		        	finish();
+		        }
+		        else{
 				Object temp = new Object(name,photo_uri);
 				
 				Log.e("LPROGroceries", "Name: "+temp.getName()+" Ref: "+temp.getRef());
@@ -94,9 +109,19 @@ public class AddItemActivity extends Activity{
 
 				
 				finish();
+		        }
 			}
         	
         });
+        
+        Button cancel_btn = (Button) findViewById(R.id.cancel_btn);
+        cancel_btn.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				finish();				
+			}
+		});
 	    
 	}
 	
@@ -106,9 +131,8 @@ public class AddItemActivity extends Activity{
 		switch(requestCode){
 			case CAPTURE_IMAGE:
 				if (resultCode == Activity.RESULT_OK){					
-			        Bitmap scaledBitmap = scaleDown(BitmapFactory.decodeFile(photo_uri), 500.0f, true);			        
-			        ImageView result = (ImageView) findViewById(R.id.preview);   
-			        result.setImageBitmap(scaledBitmap);
+
+			        runCropImage(photo_uri);
 				}
 				break;
 			case SELECT_PHOTO:
@@ -124,10 +148,21 @@ public class AddItemActivity extends Activity{
 		            
 		            photo_uri = picturePath;
 		            
-			        Bitmap scaledBitmap = scaleDown(BitmapFactory.decodeFile(picturePath), 500.0f, true);			        
-			        ImageView result = (ImageView) findViewById(R.id.preview);     
-			        result.setImageBitmap(scaledBitmap);
+		            runCropImage(photo_uri);
+
 				}
+			case CROP_PHOTO:
+				if(resultCode == Activity.RESULT_OK){
+					
+					if(photo_uri == null || data.getExtras() == null)
+						return;
+					
+					Bitmap scaledBitmap = scaleDown(BitmapFactory.decodeFile(photo_uri), 500.0f, true);			        
+			        image.setImageBitmap(scaledBitmap);
+			        image.setTag(true);
+			        
+				}
+				break;
 		}
 	}
 	
@@ -141,6 +176,23 @@ public class AddItemActivity extends Activity{
         Bitmap newBitmap = Bitmap.createScaledBitmap(realImage, width,
                 height, filter);
         return newBitmap;
+    }
+    
+    private void runCropImage(String filePath) {
+
+        // create explicit intent
+        Intent intent = new Intent(this, CropImage.class);
+
+        // tell CropImage activity to look for image to crop 
+        intent.putExtra("image-path", filePath);
+
+        // allow CropImage activity to rescale image
+        intent.putExtra("scale", true);
+        // if the aspect ratio is fixed to ratio 3/2
+        
+        // start activity CropImage with certain request code and listen
+        // for result
+        startActivityForResult(intent, CROP_PHOTO);
     }
 
 }

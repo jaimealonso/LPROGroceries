@@ -81,7 +81,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        
+        <activity android:name="com.droid4you.util.cropimage.CropImage" />
 
-    </application>
+        </application>
 
 </manifest>

@@ -9,7 +9,7 @@ package com.example.lprogroceries;
 
 public final class R {
     public static final class array {
-        public static final int list=0x7f050000;
+        public static final int list=0x7f060000;
     }
     public static final class attr {
         /** <p>May be an integer value, such as "<code>100</code>".
@@ -48,44 +48,54 @@ containing a value of this type.
     
  Default screen margins, per the Android Design guidelines. 
          */
-        public static final int activity_horizontal_margin=0x7f060000;
-        public static final int activity_vertical_margin=0x7f060001;
+        public static final int activity_horizontal_margin=0x7f070000;
+        public static final int activity_vertical_margin=0x7f070001;
     }
     public static final class drawable {
         public static final int arrowicon=0x7f020000;
-        public static final int ic_launcher=0x7f020001;
-        public static final int minusicon=0x7f020002;
-        public static final int plusicon=0x7f020003;
+        public static final int camera_crop_height=0x7f020001;
+        public static final int camera_crop_width=0x7f020002;
+        public static final int ic_launcher=0x7f020003;
+        public static final int icon=0x7f020004;
+        public static final int indicator_autocrop=0x7f020005;
+        public static final int minusicon=0x7f020006;
+        public static final int plusicon=0x7f020007;
     }
     public static final class id {
-        public static final int about=0x7f040019;
-        public static final int any=0x7f040000;
-        public static final int arrow_btn=0x7f040016;
-        public static final int back=0x7f040001;
-        public static final int button1=0x7f04000e;
-        public static final int button2=0x7f04000f;
-        public static final int button3=0x7f040010;
-        public static final int camera_btn=0x7f040004;
-        public static final int cancel_btn=0x7f04000a;
-        public static final int delete_btn=0x7f040018;
-        public static final int front=0x7f040002;
-        public static final int gallery_btn=0x7f040006;
-        public static final int history=0x7f04001a;
-        public static final int history_item_string=0x7f040015;
-        public static final int imageButton1=0x7f04000c;
-        public static final int imageView1=0x7f040011;
-        public static final int linearLayout1=0x7f040012;
-        public static final int listView1=0x7f040013;
-        public static final int listView2=0x7f040014;
-        public static final int listView3=0x7f04000d;
-        public static final int listView4=0x7f04000b;
-        public static final int list_item_string=0x7f040017;
-        public static final int name_field=0x7f040003;
-        public static final int ok_btn=0x7f040009;
-        public static final int preview=0x7f040008;
-        public static final int share=0x7f04001b;
-        public static final int textView1=0x7f040007;
-        public static final int textView2=0x7f040005;
+        public static final int about=0x7f05001f;
+        public static final int any=0x7f050000;
+        public static final int arrow_btn=0x7f05001c;
+        public static final int back=0x7f050001;
+        public static final int button=0x7f05001a;
+        public static final int button1=0x7f05000e;
+        public static final int button2=0x7f05000f;
+        public static final int button3=0x7f050010;
+        public static final int camera_btn=0x7f050004;
+        public static final int cancel_btn=0x7f05000a;
+        public static final int delete_btn=0x7f05001e;
+        public static final int discard=0x7f050017;
+        public static final int front=0x7f050002;
+        public static final int gallery_btn=0x7f050006;
+        public static final int history=0x7f050020;
+        public static final int history_item_string=0x7f05001b;
+        public static final int image=0x7f050015;
+        public static final int imageButton1=0x7f05000c;
+        public static final int imageView1=0x7f050011;
+        public static final int linearLayout1=0x7f050012;
+        public static final int listView1=0x7f050013;
+        public static final int listView2=0x7f050014;
+        public static final int listView3=0x7f05000d;
+        public static final int listView4=0x7f05000b;
+        public static final int list_item_string=0x7f05001d;
+        public static final int name_field=0x7f050003;
+        public static final int ok_btn=0x7f050009;
+        public static final int preview=0x7f050008;
+        public static final int rotateLeft=0x7f050018;
+        public static final int rotateRight=0x7f050019;
+        public static final int save=0x7f050016;
+        public static final int share=0x7f050021;
+        public static final int textView1=0x7f050007;
+        public static final int textView2=0x7f050005;
     }
     public static final class layout {
         public static final int activity_additem=0x7f030000;
@@ -93,8 +103,10 @@ containing a value of this type.
         public static final int activity_list=0x7f030002;
         public static final int activity_main=0x7f030003;
         public static final int activity_result=0x7f030004;
-        public static final int row_history=0x7f030005;
-        public static final int row_list=0x7f030006;
+        public static final int cropimage=0x7f030005;
+        public static final int main=0x7f030006;
+        public static final int row_history=0x7f030007;
+        public static final int row_list=0x7f030008;
     }
     public static final class menu {
         public static final int basic=0x7f090000;
@@ -102,25 +114,26 @@ containing a value of this type.
         public static final int result=0x7f090002;
     }
     public static final class string {
-        public static final int about=0x7f07000c;
-        public static final int action_settings=0x7f070002;
-        public static final int app_name=0x7f070000;
-        public static final int camera=0x7f070010;
-        public static final int cancel=0x7f070009;
-        public static final int developed_by=0x7f07000a;
-        public static final int edit_list=0x7f070005;
-        public static final int gallery=0x7f070011;
-        public static final int hello_world=0x7f070001;
-        public static final int history=0x7f07000b;
-        public static final int name=0x7f07000e;
-        public static final int ok=0x7f070008;
-        public static final int picture=0x7f07000f;
-        public static final int products_found=0x7f070006;
-        public static final int products_to_be_bought=0x7f070007;
-        public static final int select_picture=0x7f070004;
-        public static final int share=0x7f07000d;
-        public static final int take_picture=0x7f070003;
-        public static final int warning=0x7f070012;
+        public static final int about=0x7f04000d;
+        public static final int action_settings=0x7f040003;
+        public static final int app_name=0x7f040001;
+        public static final int camera=0x7f040011;
+        public static final int cancel=0x7f04000a;
+        public static final int developed_by=0x7f04000b;
+        public static final int edit_list=0x7f040006;
+        public static final int gallery=0x7f040012;
+        public static final int hello=0x7f040000;
+        public static final int hello_world=0x7f040002;
+        public static final int history=0x7f04000c;
+        public static final int name=0x7f04000f;
+        public static final int ok=0x7f040009;
+        public static final int picture=0x7f040010;
+        public static final int products_found=0x7f040007;
+        public static final int products_to_be_bought=0x7f040008;
+        public static final int select_picture=0x7f040005;
+        public static final int share=0x7f04000e;
+        public static final int take_picture=0x7f040004;
+        public static final int warning=0x7f040013;
     }
     public static final class style {
         /** 
