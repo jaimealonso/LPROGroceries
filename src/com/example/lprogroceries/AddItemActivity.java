@@ -6,6 +6,7 @@ import java.util.Date;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -193,6 +194,11 @@ public class AddItemActivity extends Activity{
         // start activity CropImage with certain request code and listen
         // for result
         startActivityForResult(intent, CROP_PHOTO);
+    }
+    
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+      super.onConfigurationChanged(newConfig);
     }
 
 }
