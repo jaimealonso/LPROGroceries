@@ -11,6 +11,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -133,6 +134,8 @@ public class AddItemActivity extends Activity{
 			case CAPTURE_IMAGE:
 				if (resultCode == Activity.RESULT_OK){					
 
+					MediaScannerConnection.scanFile(this, new String[] { photo_uri }, new String[] { "image/jpeg" }, null);
+					
 			        runCropImage(photo_uri);
 				}
 				break;
@@ -158,6 +161,8 @@ public class AddItemActivity extends Activity{
 					if(photo_uri == null || data.getExtras() == null)
 						return;
 					
+					MediaScannerConnection.scanFile(this, new String[] { photo_uri }, new String[] { "image/jpeg" }, null);
+
 					Bitmap scaledBitmap = scaleDown(BitmapFactory.decodeFile(photo_uri), 500.0f, true);			        
 			        image.setImageBitmap(scaledBitmap);
 			        image.setTag(true);
@@ -184,15 +189,18 @@ public class AddItemActivity extends Activity{
         // create explicit intent
         Intent intent = new Intent(this, CropImage.class);
 
-        // tell CropImage activity to look for image to crop 
         intent.putExtra("image-path", filePath);
 
-        // allow CropImage activity to rescale image
         intent.putExtra("scale", true);
-        // if the aspect ratio is fixed to ratio 3/2
         
-        // start activity CropImage with certain request code and listen
-        // for result
+		File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+		path.mkdirs();
+		File pic = new File(path, new Date().getTime()+".jpg");
+		Uri photoUri = Uri.fromFile(pic);
+		photo_uri = photoUri.getPath();
+		intent.putExtra(MediaStore.EXTRA_OUTPUT, photo_uri);
+		
+		
         startActivityForResult(intent, CROP_PHOTO);
     }
     
