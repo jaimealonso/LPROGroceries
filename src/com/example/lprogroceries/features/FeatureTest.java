@@ -1,6 +1,4 @@
 package com.example.lprogroceries.features;
-
-
 /**
  * Simpson Detector - PUC Minas - 2013
  * This project is a academic work for the discipline of Digital Image Processing of Computer Science course.
@@ -42,7 +40,7 @@ public class FeatureTest {
 	//Keypoints
 	private MatOfKeyPoint FrameKeypoints;
 	private MatOfKeyPoint TesteKeypoints;
-	private MatOfKeyPoint AtualKeypoints;
+	private List<MatOfKeyPoint> AtualKeypoints;
 	
 	//Armazedores de Descricao
 	private Mat FrameDescriptors;
@@ -73,6 +71,8 @@ public class FeatureTest {
 		FrameKeypoints = new MatOfKeyPoint();
 		FrameDescriptors = new Mat();
 		
+		AtualKeypoints = new ArrayList<MatOfKeyPoint>();
+		
 		usedKP = new ArrayList<Point>();
 
 		Good = 0;
@@ -80,7 +80,7 @@ public class FeatureTest {
 		//Extractor = DescriptorExtractor.create(FeatureDetector.SURF);
 		//Matcher = DescriptorMatcher.create(DescriptorMatcher.BRUTEFORCE);
 		
-		FD = FeatureDetector.create(FeatureDetector.GRID_FAST);
+		FD = FeatureDetector.create(FeatureDetector.FAST);
 		//FD = FeatureDetector.create(FeatureDetector.FAST);
 		Extractor = DescriptorExtractor.create(FeatureDetector.SURF);
 		Matcher = DescriptorMatcher.create(DescriptorMatcher.BRUTEFORCE_L1);
@@ -121,7 +121,7 @@ public class FeatureTest {
 	
     				Point ptAtual = kp.get(atual[0].queryIdx).pt;
     				
-    				//if(true || !usedKP.contains(ptAtual) ){
+    				if( !usedKP.contains(ptAtual) ){
     					Good++;
     					usedKP.add(ptAtual);
     					if(flags[1]){
@@ -139,7 +139,7 @@ public class FeatureTest {
 		    					maxY = y;
 		    				}
 	    				}
-    				//}
+    				}
     				if(flags[0]){//DrawMatches
     					Core.circle(Frame, kp.get(atual[0].queryIdx).pt ,6, new Scalar(255, 0, 255));
     				}
@@ -149,14 +149,13 @@ public class FeatureTest {
 	    	}
 	    	//i++;
 	    }
-		int pts = 9;
+		int pts = 13;
 		
-		if (FrameKeypoints.size().height > 5000)
-			pts = 17;
-		else if (FrameKeypoints.size().height > 9000)
-			pts = 30;
+		//if (FrameKeypoints.size().height > 5000)
+		//	pts = 50;
 		
-		
+		System.out.println(Good);
+
 		if( Good >=pts){
 			return true;
 		}else{
@@ -164,6 +163,10 @@ public class FeatureTest {
 		}
 		
 		return false;
+		
+		
+		
+		//return false;
 	}
 	/**
 	 * Habilita o desenho de do Keypoints que "batem".
@@ -215,9 +218,9 @@ public class FeatureTest {
 	 */
 	public FeatureTest(List<Mat> images){
 		Images = images;
-		AtualKeypoints = new MatOfKeyPoint();
+		AtualKeypoints = new ArrayList<MatOfKeyPoint>();
 		AtualDescriptors = new ArrayList<Mat>();
-		FD = FeatureDetector.create(FeatureDetector.GRID_FAST);
+		FD = FeatureDetector.create(FeatureDetector.BRISK);
 		//FD = FeatureDetector.create(FeatureDetector.FAST);
 		Extractor = DescriptorExtractor.create(FeatureDetector.SURF);
 		Matcher = DescriptorMatcher.create(DescriptorMatcher.BRUTEFORCE_L1);
@@ -228,13 +231,13 @@ public class FeatureTest {
 	 * Para recuperar os Descritores chame getDescriptors.
 	 */
 	public void ComputeImages(){
-		for(int c = 0; c < Images.size(); c++){
-			Mat atual = Images.get(c);
-			Mat atualDesc = new Mat();
-			FD.detect(atual, AtualKeypoints);
-			Extractor.compute(atual, AtualKeypoints, atualDesc);
-			AtualDescriptors.add(atualDesc);
-		}
+		//for(int c = 0; c < Images.size(); c++){
+			//Mat atual = Images.get(c);
+			//Mat atualDesc = new Mat();
+			FD.detect(Images, AtualKeypoints);
+			Extractor.compute(Images, AtualKeypoints, AtualDescriptors);
+			//AtualDescriptors.add(atualDesc);
+		//}
 		
 		
 	}
@@ -243,9 +246,9 @@ public class FeatureTest {
 	 * Primeiro e necessario chamar ComputeImages.
 	 * @return Keypoints referentes a imagem.
 	 */
-	public Mat getKeypoints(){
-		return AtualKeypoints;
-	}
+	//public Mat getKeypoints(){
+	//	return AtualKeypoints;
+	//}
 	/**
 	 * Pegos os descritores referentes as imagens passadas.
 	 * @return Descritores referentes as imagens.

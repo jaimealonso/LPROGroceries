@@ -48,7 +48,7 @@ public class ImageDecode{
 		//IMPORTANT: index numbers in "completeList" will be the same as in "userObjects"
 		for(Object o : completeList){
 			Log.e("ImageDecode", "Ref: "+o.getRef());
-			Mat temp = Highgui.imread(o.getRef(), Highgui.CV_LOAD_IMAGE_COLOR);
+			Mat temp = Highgui.imread(o.getRef(), Highgui.CV_LOAD_IMAGE_GRAYSCALE);
 			userObjects.add(temp);
 		}
 		
@@ -56,7 +56,7 @@ public class ImageDecode{
 		Log.e("ImageDecode", "About to compute images...");
 		previousDetector.ComputeImages();
 		
-		Mat pic = Highgui.imread(photo_uri, Highgui.CV_LOAD_IMAGE_COLOR);
+		Mat pic = Highgui.imread(photo_uri, Highgui.CV_LOAD_IMAGE_GRAYSCALE);
 		
 		FeatureTest detector = new FeatureTest();
 		detector.setFrame(pic);

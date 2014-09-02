@@ -12,6 +12,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -96,6 +97,7 @@ public class MainActivity extends Activity {
 		switch(requestCode){
 			case CAPTURE_IMAGE:
 				if (resultCode == Activity.RESULT_OK){
+					MediaScannerConnection.scanFile(this, new String[] { photo_uri.getPath() }, new String[] { "image/jpeg" }, null);
 					Intent result_intent = new Intent("com.example.ResultActivity");
 					result_intent.putExtra("PHOTO_URI", photo_uri.getPath());
 					result_intent.putExtra("Activity", "main");
